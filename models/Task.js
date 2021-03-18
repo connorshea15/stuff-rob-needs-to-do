@@ -1,7 +1,5 @@
 const { Schema, model } = require('mongoose');
-const moment = require('moment-timezone');
-const dateArizona = moment.tz(Date.now(), "America/Los_Angeles").format();
-console.log("Date Now!:    " + dateArizona);
+const moment = require('moment');
 
 const TaskSchema = new Schema({
     taskDetails: {
@@ -9,7 +7,7 @@ const TaskSchema = new Schema({
     },
     createdAt: {
         type: Date,
-        default: dateArizona
+        default: Date.now()
     }
 });
 

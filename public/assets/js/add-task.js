@@ -1,13 +1,15 @@
 const $taskForm = document.querySelector('#task-form')
 const $taskList = document.querySelector('#task-section');
 
+
 const handleTaskSubmit = event => {
     event.preventDefault();
 
     const taskDetails = $taskForm.querySelector("#task-info").value;
-    console.log("Task Details" + taskDetails);
 
     const formData = { taskDetails };
+
+    $taskForm.querySelector("#task-info").value = '';
 
     fetch('/api/tasks', {
         method: 'POST',
@@ -20,7 +22,6 @@ const handleTaskSubmit = event => {
         .then(response => response.json())
         .then(postResponse => {
             printTask(postResponse);
-            //alert('You added a task!');
         })
         .catch(err => {
             console.log(err);
@@ -29,16 +30,20 @@ const handleTaskSubmit = event => {
 
 const printTask = ({ _id, createdAt, taskDetails }) => {
 
+    var taskTime = moment(createdAt).format('LLL');
+
     const taskCard = `
         <div class="card">
             <div class="card-body">
                 ${taskDetails}
-                ${createdAt}
+                ${taskTime}
             </div>
         </div>
     `
-
-    $taskList.innerHTML += taskCard;
+    // This is the method for getting them in order from newest to oldest
+    var newEl = document.createElement("div");
+    newEl.innerHTML = taskCard;
+    $taskList.prepend(newEl);
 };
 
 
