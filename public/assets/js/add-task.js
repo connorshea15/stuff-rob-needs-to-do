@@ -1,4 +1,5 @@
 const $taskForm = document.querySelector('#task-form')
+const $taskList = document.querySelector('#task-section');
 
 const handleTaskSubmit = event => {
     event.preventDefault();
@@ -18,12 +19,26 @@ const handleTaskSubmit = event => {
     })
         .then(response => response.json())
         .then(postResponse => {
-            alert('You added a task!');
-            console.log(postResponse);
+            printTask(postResponse);
+            //alert('You added a task!');
         })
         .catch(err => {
             console.log(err);
         });
+};
+
+const printTask = ({ _id, createdAt, taskDetails }) => {
+
+    const taskCard = `
+        <div class="card">
+            <div class="card-body">
+                ${taskDetails}
+                ${createdAt}
+            </div>
+        </div>
+    `
+
+    $taskList.innerHTML += taskCard;
 };
 
 
