@@ -33,10 +33,10 @@ const printTask = ({ _id, createdAt, taskDetails }) => {
     var taskTime = moment(createdAt).format('LLL');
 
     const taskCard = `
-        <div class="card">
+        <div class="card my-5">
             <div class="card-body">
-                ${taskDetails}
-                ${taskTime}
+                <h5 class="card-title">${taskTime}</h5>
+                <p class="card-text">${taskDetails}</p>  
             </div>
         </div>
     `

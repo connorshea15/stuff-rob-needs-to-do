@@ -1,0 +1,13 @@
+body {
+    margin: 5%;
+}
+
+.card {
+    border-style: solid;
+    border-width: 1px;
+    margin: 10px;
+}
+
+#task-form {
+    margin: 10px;
+}
