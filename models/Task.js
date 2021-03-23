@@ -8,6 +8,10 @@ const TaskSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now()
+    },
+    completed: {
+        type: Number,
+        default: 0
     }
 });
 
